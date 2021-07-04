@@ -6,4 +6,5 @@ set -e
 # run checks
 find ./
 cd $WORKDIR
-ansible-playbook playbook.yaml -i inventory.yaml --diff --check
+ansible-lint playbook.yaml
+#ansible-playbook playbook.yaml -i inventory.yaml --diff --check
