@@ -24,5 +24,6 @@ cd $WORKDIR
 ansible-lint playbook.yaml
 if [ "$APPLY" = "true" ];then
   #ansible-playbook playbook.yaml -i inventory.yaml --diff --check
-  ansible-playbook playbook.yaml -i inventory.yaml
+  echo "$SSH_PRIVATE_KEY" | base64 -d > key
+  ansible-playbook playbook.yaml -i inventory.yaml --key-file "key"
 fi
