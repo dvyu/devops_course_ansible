@@ -11,8 +11,9 @@ if [ "$APPLY" = "true" ];then
 EOF
   ) > $WORKDIR/inventory.yaml
 
-  # get target vm ip
-  cat ./../terraform2/terraform.tfstate | jq '.resources[] | select(.type == "aws_instance") | .instances[].attributes.public_ip ' >> $WORKDIR/inventory.yaml
+  # add target vm ip
+  cat ./terraform2/public_ip >> $WORKDIR/inventory.yaml
+  
   cat $WORKDIR/inventory.yaml
 fi
 
