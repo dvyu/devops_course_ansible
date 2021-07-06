@@ -22,9 +22,10 @@ cd $WORKDIR
 
 # run checks
 #for i in $(find ./terraform2/ -type f | grep -v ".terraform/providers"); do echo $i;cat $i; done
-ansible-lint playbook.yaml
 if [ "$APPLY" = "true" ];then
   #ansible-playbook playbook.yaml -i inventory.yaml --diff --check
   echo "$SSH_PRIVATE_KEY" | base64 -d > key
   ansible-playbook playbook.yaml -i inventory.yaml --key-file "key"
+else
+  ansible-lint playbook.yaml
 fi
